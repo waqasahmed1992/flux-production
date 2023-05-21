@@ -33,7 +33,7 @@ spec:
       containers:
 
       - name: nginx
-        image: nginxy
+        image: nginx:latest
 
         ports:
 
