@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: roomservice
+spec:
+  selector:
+    matchLabels:
+      app: roomservice
+  template:
+    metadata:
+      labels:
+        app: roomservice
+    spec:
+      containers:
+      - name: roomservice
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: ngix-index-file
+          mountPath: /usr/share/nginx/html/
+      volumes:
+      - name: ngix-index-file
+        configMap:
+          name: example-configmap-1
